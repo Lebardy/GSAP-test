@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Add this to your App.css */
+.animate-blink {
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

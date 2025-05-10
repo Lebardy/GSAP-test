@@ -1,35 +1,101 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/SplitText";
+import "./App.css";
+
+gsap.registerPlugin(SplitText);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const h1 = wrapperRef.current?.querySelector("h1");
+      if (!h1) return;
+
+      const split = new SplitText(h1, { type: "words,chars" });
+
+      // Entrance animation
+      gsap.set(split.chars, { opacity: 0 });
+
+      gsap.to(split.chars, {
+        opacity: 1,
+        stagger: 0.05,
+        duration: 0.5,
+        ease: "power1.inOut",
+      });
+
+      const wordMap = {
+        developer: {
+          backgroundColor: "#1a1a1a", // Dark background
+          color: "#22c55e", // Green text
+          fontFamily: "monospace", // Monospace font
+        },
+        photographer: {
+          backgroundColor: "#0f0f0f", // Dark gray/black
+          color: "#ffffff", // Clean white text
+          fontFamily: "Helvetica, sans-serif", // Clean font
+        },
+        student: {
+          backgroundColor: "#1e293b", // Dark slate
+          color: "#cbd5e1", // Soft slate text
+          fontFamily: "Georgia, serif",
+        },
+      };
+
+      const cleanupFns: (() => void)[] = [];
+
+      Object.entries(wordMap).forEach(([word, styles]) => {
+        const el = Array.from(split.words).find((w) => w.textContent?.toLowerCase().replace(".", "") === word) as HTMLElement | undefined;
+
+        if (el) {
+          el.style.cursor = "pointer";
+
+          const onEnter = () => {
+            gsap.to("body", {
+              backgroundColor: styles.backgroundColor,
+              color: styles.color,
+              fontFamily: styles.fontFamily,
+              duration: 1.5,
+              ease: "power2.out",
+            });
+
+            gsap.to("h1", {
+              color: styles.color,
+              duration: 1.5,
+              ease: "power2.out",
+            });
+
+            gsap.to(".container", {
+              opacity: 1,
+              duration: 1.5,
+              ease: "power2.out",
+            });
+          };
+
+          el.addEventListener("mouseenter", onEnter);
+          cleanupFns.push(() => el.removeEventListener("mouseenter", onEnter));
+        }
+      });
+
+      return () => {
+        cleanupFns.forEach((fn) => fn());
+      };
+    },
+    { scope: wrapperRef }
+  );
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div ref={wrapperRef} className="container flex items-center justify-center h-screen">
+      <h1 className="text-2xl font-bold text-center max-w-xl leading-relaxed">
+        Hi, I'm Jan Librando. <br />
+        <span className="cursor-pointer block text-left">developer</span>
+        <span className="cursor-pointer block text-left">photographer</span>
+        <span className="cursor-pointer block text-left">student</span>
+      </h1>
+    </div>
+  );
 }
 
-export default App
+export default App;
