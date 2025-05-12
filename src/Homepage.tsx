@@ -36,11 +36,11 @@ function Homepage() {
         photographer: {
           backgroundColor: "#0f0f0f", // Dark gray/black
           color: "#ffffff", // Clean white text
-          fontFamily: "Helvetica, sans-serif", // Clean font
+          fontFamily: "josefin sans", // Clean font
         },
         student: {
           backgroundColor: "#1e293b", // Dark slate
-          color: "#cbd5e1", // Soft slate text
+          color: "#44a0a6 ", // Soft slate text
           fontFamily: "Georgia, serif",
         },
       };
@@ -51,8 +51,6 @@ function Homepage() {
         const el = Array.from(split.words).find((w) => w.textContent?.toLowerCase().replace(".", "") === word) as HTMLElement | undefined;
 
         if (el) {
-          el.style.cursor = "pointer";
-
           const onEnter = () => {
             gsap.to("body", {
               backgroundColor: styles.backgroundColor,
@@ -94,8 +92,12 @@ function Homepage() {
         <span className="cursor-pointer block text-left">
           <Link to="/developer">developer</Link>
         </span>
-        <span className="cursor-pointer block text-left">photographer</span>
-        <span className="cursor-pointer block text-left">student</span>
+        <span className="cursor-pointer block text-left photo">
+          <Link to="/photography">photographer</Link>
+        </span>
+        <span className="cursor-pointer block text-left">
+          <a href="https://www.asiancollege.edu.ph/">student</a>
+        </span>
       </h1>
     </div>
   );
