@@ -96,7 +96,7 @@ function Homepage() {
           <Link to="/photography">photographer</Link>
         </span>
         <span className="cursor-pointer block text-left">
-          <a href="https://www.asiancollege.edu.ph/">student</a>
+          <Link to="/about">student</Link>
         </span>
       </h1>
     </div>

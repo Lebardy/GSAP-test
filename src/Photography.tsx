@@ -7,26 +7,26 @@ import "./App.css";
 gsap.registerPlugin(ScrollTrigger);
 const photos = [
   {
-    src: "../public/images/SY.jpg",
+    src: "/images/SY.jpg",
     title: "Sid and Ysa Graduation Shoot",
     link: "https://www.facebook.com/share/p/15f8aTq3Gd/",
   },
   {
-    src: "../public/images/AWAKE.jpg",
+    src: "/images/AWAKE.jpg",
     title: "AWAKE - Victory Dumaguete Youth Event",
     link: "https://www.facebook.com/share/p/1DfWtR9ZWE/",
   },
   {
-    src: "../public/images/Grad.jpg",
+    src: "/images/Grad.jpg",
     title: "Graduation Banquet of Victory Dumaguete College Seniors",
   },
   {
-    src: "../public/images/AKIVA.jpg",
+    src: "/images/AKIVA.jpg",
     title: "AKIVA 2025 - Ultimate Frisbee Tournament",
     link: "https://www.facebook.com/share/p/1Vb1gMJxN1/",
   },
   {
-    src: "../public/images/UBG.jpg",
+    src: "/images/UBG.jpg",
     title: "UBG - Ultimate Frisbee Tournament",
     link: "https://www.facebook.com/share/p/16PUs4uZJv/",
   },
