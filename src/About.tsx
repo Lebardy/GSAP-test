@@ -34,13 +34,13 @@ const About = () => {
       <h1 className="about-heading text-4xl font-bold mb-4">About Me</h1>
       <p className="about-text max-w-xl text-3xl mb-6">Hi! I'm Jan Librando — a passionate developer, photographer, and lifelong student. I enjoy creating beautiful and functional web experiences, capturing moments through my lens, and continuously learning new things.</p>
       <div className="social-icons flex gap-6">
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.facebook.com/LeBardy/" target="_blank" rel="noopener noreferrer">
           <img src="/facebook.svg" alt="Facebook" className="w-8 h-8 hover:scale-110 transition-transform" />
         </a>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/Lebardy" target="_blank" rel="noopener noreferrer">
           <img src="/github.svg" alt="GitHub" className="w-8 h-8 hover:scale-110 transition-transform" />
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/lebardyyy/" target="_blank" rel="noopener noreferrer">
           <img src="/instagram.svg" alt="Instagram" className="w-8 h-8 hover:scale-110 transition-transform" />
         </a>
       </div>
